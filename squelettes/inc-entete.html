@@ -1,0 +1,44 @@
+<div id="entete">
+	<div id="haut">
+            <div id="logo">
+            [(#REM) Afficher le logo ou le titre du site ]
+
+                <a rel="start" href="#URL_SITE_SPIP/">
+                [(#LOGO_SITE_SPIP||?{
+                
+                    [(#LOGO_SITE_SPIP
+                        ||image_reduire{770,200}
+                        |inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+                        |inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
+                        )]
+                
+                    ,
+                
+                    <span id="nom_site_spip">#NOM_SITE_SPIP</span>
+                })]
+                </a>
+            </div>
+            <div id="pub">
+            	<div class="newsfeed"></div>
+            </div>
+    </div>
+    <div id="menu">
+        <div><a href="#URL_SITE_SPIP/">Accueil</a></div>
+        <BOUCLE_video_news(RUBRIQUES){id_rubrique=1}>
+        <div><a href="#URL_RUBRIQUE">Vid&eacute;os Clips</a></div>
+        </BOUCLE_video_news>
+        <BOUCLE_video_jump(RUBRIQUES){id_rubrique=2}>
+        <div><a href="#URL_RUBRIQUE">Y&euml;fu Jump</a></div>
+        </BOUCLE_video_jump>
+        <BOUCLE_video_jump2(RUBRIQUES){id_rubrique=17}>
+        <div><a href="#URL_RUBRIQUE">Feccal hip hop galsen</a></div>
+        </BOUCLE_video_jump2>
+        <BOUCLE_video_xamele(RUBRIQUES){id_rubrique=6}>
+        <div><a href="#URL_RUBRIQUE">Xamle</a></div>
+        </BOUCLE_video_xamele>
+        <BOUCLE_video_hip(RUBRIQUES){id_rubrique=4}>
+        <div><a href="#URL_RUBRIQUE">Liens</a></div>
+        </BOUCLE_video_hip>
+    </div>
+<br class="nettoyeur" />
+</div>

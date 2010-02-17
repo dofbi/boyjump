@@ -1,0 +1,90 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+<BOUCLE_hitparade2(ARTICLES){id_rubrique}{par soustitre}{debut_articles,1}>
+#SET{vdefault,#URL_SITE}
+</BOUCLE_hitparade2>
+<body class="page_rubrique" onLoad="loadSWF('#GET{vdefault}&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0','video'); return false;">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : contenu de la rubrique ]
+		<div id="contenu">
+                    <div id="Top"><div id="Top_logo">[(#TITRE|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]</div><div id="Top_menu"><a href="#URL_RUBRIQUE" class="on2">Par Date</a> | <a href="spip.php?page=r-clips&id_rubrique=#ID_RUBRIQUE" class="on2">Par Clips</a> | <a href="#" class="on22">Par Artistes</a></div></div>
+                    <BOUCLE_hitparade(ARTICLES){id_rubrique}{par soustitre}{debut_articles,1}>
+			<div id="Top1">
+            <div id="player">
+<!--            <object id="video" width="425" height="350"><param name="movie" value="#URL_SITE"></param><param name="wmode" value="transparent"></param><embed src="#URL_SITE&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0" wmode="transparent" width="425" height="350"></embed></object>-->
+<div id="video">
+    You need Flash player 8+ and JavaScript enabled to view this video.
+  </div>
+              </div>
+      <div id="info">
+            	<h1>#TITRE</h1>
+    			<h2>#SOUSTITRE</h2>
+                [<div class="graph"> <strong class="bar" style="width: #POPULARITE%;">(#POPULARITE)%</strong></div>]
+               <div id="message">         
+          [(#REM) Nombre total de messages ]
+          #SET{iddefault,#ID_ARTICLE}
+          <BOUCLE_decompte(FORUMS){id_article=#GET{iddefault}}{tout}>
+          </BOUCLE_decompte>
+          [<a href="#URL_ARTICLE"><h3>(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE ,'Aucun commentaire »'})
+            [(#TOTAL_BOUCLE|=={1}|?{
+            commentaire pour ce clip »
+            ,
+            commentaire pour ce clip »
+            })]
+            </h3></a>]
+            </B_decompte>
+            <div>
+              <a href="#URL_ARTICLE"><img src="IMG/boy/vote2.jpg" width="72" height="32" alt="vote"></a>
+              </div>  
+          </div> 
+            </div>
+            </div>
+            </BOUCLE_hitparade>
+            <B_articles>
+					#ANCRE_PAGINATION
+                    <div id="top10">
+						<BOUCLE_articles(ARTICLES) {id_rubrique} {par soustitre}{pagination 20}>
+            <div onClick="loadSWF('#URL_SITE&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0','video'); return false;">
+            <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#ID_ARTICLE" [title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]<br/>
+				</BOUCLE_documents_portfolio>
+
+          <A href="#" target="tv">#SOUSTITRE</A><br/>
+          #TITRE
+          </div>
+						</BOUCLE_articles></div>
+					[<div class="pagination2">(#PAGINATION{page_precedent_suivant})</div>]
+				</B_articles>
+
+		
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+			<INCLURE{fond=inc-nav-top}> 
+		</div><!-- fin navigation -->
+		<div id="bas"></div>
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>

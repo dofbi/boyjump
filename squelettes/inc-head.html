@@ -1,0 +1,159 @@
+#CACHE{86400}
+[(#REM)
+	Entete standard de toutes les pages ; les elements specifiques
+	(title, description) figurent dans le squelette article.html
+]
+[(#REM) Preciser le charset ]
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+[(#REM) Fierement fabrique avec SPIP ]
+<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+
+[(#REM) Lien vers l'icone destinee a la barre de bookmarks ]
+[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+[(#REM) Lien vers le flux RSS du site ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+
+[(#REM) Feuille de style par defaut pour le code genere par SPIP ]
+<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+
+[(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
+<link rel="stylesheet" href="[(#CHEMIN{habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+
+[(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
+<link rel="stylesheet" href="[(#CHEMIN{spip_boyjump.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+
+[(#REM) Feuille de style CSS pour l'impression ]
+<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+
+<script type="text/javascript" src="[(#CHEMIN{swfobject.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{swfobject/swfobject.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{jquery-1.2.6.min.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{jquery.timer.js})]"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+//load clip info
+	$('#top10 div:first').addClass('selected');
+	$('#top10 div').bind('click', function() {
+			$('#top10 div').removeClass('selected');
+			$(this).addClass('selected');
+			var $idar = $('#top10 div.selected a');
+			var idarv = $idar.attr('href');
+			var lienxml= 'spip.php?page=video_info&id_article=' + idarv;
+			$.get(lienxml, function(data) {
+			$('#info').empty();
+			$(data).find('item').each(function() {
+			var $entry = $(this);
+			var html = '<a href="';
+			html += $entry.find('forumurl').text() + '" class="on2"><h1>';
+			html += $entry.find('title').text() + '</h1></a><a href="';
+			html += $entry.find('forumurl').text() + '"><h2>';
+			html += $entry.find('soustitle').text() + '</h2></a><div class="graph"> <strong class="bar" style="width: #POPULARITE';
+			html += $entry.find('populariter').text() + '%;">' + $entry.find('populariter').text() + '%</strong></div><div id="message"><a href="';
+			html += $entry.find('forumurl').text() + '"><h3>';
+			html += $entry.find('forumdecompte').text() + '</h3></a><div><a href="';
+			html += $entry.find('forumurl').text() + '"><img src="IMG/boy/vote2.jpg" width="72" height="32" alt="vote"></a></div></div>';
+			$('#info').append($(html));
+			})
+			})		
+		})
+//load pub
+$publi = function() {
+$('#pub').each(function() {
+$('.newsfeed').empty();
+$.get('spip.php?page=pub_info', function(data) {
+$(data).find('item').each(function() {
+var title = $('title', this).text();
+var linkText = $('link', this).text();
+var type = $('type', this).text();
+var lien = $('enclosure_url', this).text();
+var largeur = $('enclosure_largeur', this).text();
+var hauteur = $('enclosure_hauteur', this).text();
+if ( type=='JPG') {
+var $type = '<a href="'+linkText+'" title="'+title+'" target="_blank"><img src="'+lien+'" border="0" width="'+largeur+'" height="'+hauteur+'"/></a>';
+}
+if ( type=='Flash') {
+var $type = '<embed width="'+largeur+'" height="'+hauteur+'" type="application/x-shockwave-flash" src="'+lien+'" pluginspage="http://www.adobe.com/go/getflashplayer" />';
+}
+$('<div></div>')
+.addClass('newsfeed')
+.append($type)
+.appendTo('#pub');
+});
+});
+});
+};
+$('#pub').each($publi);
+$.timer({name:"test", interval: 30, end: 5000}, $publi);
+});
+</script> 
+<script type="text/javascript">
+function onYouTubePlayerReady(targetID) {
+      ytplayer = document.getElementById("video");
+	  ytplayer.playVideo();
+    }
+//Support function: checks to see if target
+//element is an object or embed element
+
+function isObject(targetID){
+
+   var isFound = false;
+   var el = document.getElementById(targetID);
+   
+   if(el && (el.nodeName === "OBJECT" || el.nodeName === "EMBED")){
+   
+      isFound = true;
+   
+   }
+   
+   return isFound;
+}
+
+//Support function: creates an empty
+//element to replace embedded SWF object
+
+function replaceSwfWithEmptyDiv(targetID){
+
+   var el = document.getElementById(targetID);
+   
+   if(el){
+   
+      var div = document.createElement("div");
+      el.parentNode.insertBefore(div, el);
+ 
+      //Remove the SWF
+      swfobject.removeSWF(targetID);
+   
+      //Give the new DIV the old element's ID
+      div.setAttribute("id", targetID);
+      
+   }
+   
+}
+
+
+function loadSWF(url, targetID){
+
+   //Check for existing SWF
+   if(isObject(targetID)){
+   
+      //replace object/element with a new div
+      replaceSwfWithEmptyDiv(targetID);
+      
+   //Embed SWF
+   }
+     
+   if (swfobject.hasFlashPlayerVersion("7")) {
+   
+      var attributes = { data: url, width:"425", height:"350" };
+      var params = { allowScriptAccess: "always",allowfullscreen:"true" };
+      var obj = swfobject.createSWF(attributes, params, targetID);
+   }
+   
+}
+
+</script> 
+
+[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ]
+#INSERT_HEAD

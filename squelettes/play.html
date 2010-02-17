@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="swfobject/swfobject.js"></script> 
+<script type="text/javascript">
+/*
+    var params = { allowScriptAccess: "always",allowfullscreen:"true" };
+    var atts = { id: "myytplayer" };
+    swfobject.embedSWF("http://www.youtube.com/v/-jYsaFmpwZE&enablejsapi=1&playerapiid=ytplayer&fs=1","ytapiplayer", "425", "356", "8", null, null, params, atts);
+	//swfobject.embedSWF("http://www.youtube.com/v/6mEPehXXnZo&enablejsapi=1&playerapiid=ytplayer&fs=1","ytapiplayer", "425", "356", "8", null, null, params, atts);
+}*/				   
+ function onYouTubePlayerReady(playerId) {
+      ytplayer = document.getElementById("ytapiplayer");
+    }
+
+	function play() {
+  if (ytplayer) {
+    ytplayer.playVideo();
+  }	
+
+//Support function: checks to see if target
+//element is an object or embed element
+   var isFound = false;
+
+function isObject(targetID){
+
+   var el = document.getElementById(targetID);
+   
+   if(el && (el.nodeName === "OBJECT" || el.nodeName === "EMBED")){
+   
+      isFound = true;
+   
+   }
+   
+   return isFound;
+}
+
+//Support function: creates an empty
+//element to replace embedded SWF object
+
+function replaceSwfWithEmptyDiv(targetID){
+
+   var el = document.getElementById(targetID);
+   
+   if(el){
+   
+      var div = document.createElement("div");
+      el.parentNode.insertBefore(div, el);
+ 
+      //Remove the SWF
+      swfobject.removeSWF(targetID);
+   
+      //Give the new DIV the old element's ID
+      div.setAttribute("id", targetID);
+      
+   }
+   
+}
+
+
+function loadSWF(url, targetID){
+
+   //Check for existing SWF
+   if(isObject(targetID)){
+   
+      //replace object/element with a new div
+      replaceSwfWithEmptyDiv(targetID);
+      
+   //Embed SWF
+   }
+     
+   if (swfobject.hasFlashPlayerVersion("7")) {
+   
+      var attributes = { data: url, width:"550", height:"400" };
+      var params = {};
+      var obj = swfobject.createSWF(attributes, params, targetID);
+   
+   }
+   
+}
+}
+
+</script> 
+</head>
+
+<body>
+  <div id="ytapiplayer">
+    You need Flash player 8+ and JavaScript enabled to view this video.
+  </div>
+    <div id="ytapiplayer2">
+    You need Flash player 8+ and JavaScript enabled to view this video.
+  </div>
+  <a href="javascript:void(0);" onclick="play();">Play</a>
+  <p><a href="http://www.youtube.com/v/-jYsaFmpwZE&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0" onclick="loadSWF(this.href,'ytapiplayer'); return false;">video 1</a>
+
+<a href="http://www.youtube.com/v/6mEPehXXnZo&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0" onclick="loadSWF(this.href,'ytapiplayer'); return false;">
+video 2
+</a></p>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<script type="text/javascript" src="swfobject/swfobject.js"></script>
+<script type="text/javascript">
+
+   var params = { allowScriptAccess: "always",allowfullscreen:"true" };
+   var atts = { id: "myytplayer" };
+   swfobject.embedSWF("http://www.youtube.com/v/-jYsaFmpwZE&enablejsapi=1&playerapiid=ytplayer&fs=1",
+                      "ytapiplayer", "425", "356", "8", null, null, params, atts);
+                                         
+function onYouTubePlayerReady(playerId) {
+     ytplayer = document.getElementById("myytplayer");
+   }
+function play() {
+ if (ytplayer) {
+   ytplayer.playVideo();
+ }
+}
+function play2(param) {
+ if (ytplayer) {
+   ytplayer.playVideo();
+ }
+}
+function playvideo(param){
+ var params = { allowScriptAccess: "always",allowfullscreen:"true" };
+ var atts = { id: "myytplayer" };
+  swfobject.embedSWF(param,"ytapiplayer", "425", "356", "8", null, null, params, atts);
+
+}
+
+
+
+</script>
+ <div id="ytapiplayer">
+   You need Flash player 8+ and JavaScript enabled to view this video.
+ </div>
+ <a href="javascript:void(0);" onclick="play();">Play</a>
+  <a href="javascript:void(0);" onclick="playvideo('http://www.youtube.com/v/6mEPehXXnZo&enablejsapi=1&playerapiid=ytplayer&fs=1');">Play</a>
+</body>
+</html>
+ 

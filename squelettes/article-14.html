@@ -1,0 +1,100 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+<script src="flowplayer/examples/js/flashembed.min.js"></script>
+</head>
+<BOUCLE_hitparade2(ARTICLES){id_article}>
+#SET{vdefault,#URL_SITE}
+</BOUCLE_hitparade2>
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div id="contenu">
+
+<div id="Top"><div id="Top_logo">[(#TITRE|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]</div></div>
+                    <BOUCLE_hitparade(ARTICLES){id_article}>
+			<div id="Top1">
+            <div id="player">
+<!--            <object id="video" width="425" height="350"><param name="movie" value="#URL_SITE"></param><param name="wmode" value="transparent"></param><embed src="#URL_SITE&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0" wmode="transparent" width="425" height="350"></embed></object>-->
+<div id="video">
+    You need Flash player 8+ and JavaScript enabled to view this video.
+  </div>
+	<script type="text/javascript">
+		var s1 = new SWFObject("[(#CHEMIN{player.swf})]","ply","425","344","9","#FFFFFF");
+		s1.addParam('allowfullscreen','true');
+  		s1.addParam('allowscriptaccess','always');
+  		s1.addParam('wmode','opaque');
+  		s1.addParam('flashvars','file=#URL_SITE&image=[(#LOGO_ARTICLE||extraire_attribut{'src'})]&streamer=rtmp://red5.dofbi.com/Streaming');
+  		s1.write('video');
+	</script>
+              </div>
+      <div id="info">
+            	<h1>#TITRE</h1>
+    			<h2>#SOUSTITRE</h2>
+                <!--[<div class="graph"> <strong class="bar" style="width: #POPULARITE%;">(#POPULARITE)%</strong></div>]-->
+               <div id="message"> 
+[(#REM) Nombre total de messages ]
+          <BOUCLE_decompte(FORUMS){id_article}{tout}>
+          </BOUCLE_decompte>
+          [<a href="#URL_ARTICLE"><h3>(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,'Aucun commentaire'})
+            [(#TOTAL_BOUCLE|=={1}|?{
+            commentaire pour ce clip &raquo;
+            ,
+            commentaire pour ce clip &raquo;
+            })]
+            </h3></a>]
+            
+          </B_decompte>
+          #NOTATION
+          </div> 
+            </div>
+            </div>
+			</BOUCLE_hitparade>
+            <div id="top11">
+			#DEBUT_SURLIGNE
+			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
+			#FIN_SURLIGNE
+			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF]
+			[(#PETITION|?{' '})
+				<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
+			]
+
+			[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+			[(#REM) Forum de l'article ]
+			<a href="#forum" name="forum" id="forum"></a>
+			[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)">Laisser un commentaire</a></h2>]
+			<INCLURE{fond=inc-forum}{id_article}>
+		</div>
+		</div><!-- fin contenu -->
+
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+			<INCLURE{fond=inc-nav-top}{id_article}> 
+		</div><!-- fin navigation -->
+		<div id="bas"></div>
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>

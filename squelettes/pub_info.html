@@ -1,0 +1,22 @@
+#CACHE{0}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
+<?xml version="1.0"[ encoding="(#CHARSET)"]?>
+<rss version="2.0"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+>
+
+<channel>
+	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+	<link>#URL_SITE_SPIP/</link>
+	<description>[(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)]</description>
+	<language>#LANG</language>
+	<generator>SPIP - www.spip.net2</generator>
+
+<BOUCLE_10recents(ARTICLES){id_rubrique=8}{par hasard}{0,1}>
+<INCLURE{fond=inc-rss-pub}{id_article}>
+</BOUCLE_10recents>
+
+</channel>
+
+</rss>

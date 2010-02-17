@@ -1,0 +1,86 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+<body class="page_rubrique">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : contenu de la rubrique ]
+		<div id="contenu">
+                    <div id="Top"><div id="Top_logo">[(#TITRE|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]</div></div>
+                    <BOUCLE_hitparade(ARTICLES){id_rubrique}{par date}{inverse}{debut_articles,1}>
+			<div id="Top2">
+            [<div id="logo">
+   				<a href="#URL_ARTICLE">(#LOGO_ARTICLE||image_reduire{250,250})</a>
+              </div>]
+      <div id="artcle">
+				<h1 class="#EDIT{titre} titre"><a href="#URL_ARTICLE">#TITRE</a></h1>
+				[<p class="#EDIT{soustitre} soustitre"><a href="#URL_ARTICLE">(#SOUSTITRE)</a></p>]
+                <p><small>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+			[<div class="#EDIT{chapo} chapo"><a href="#URL_ARTICLE">(#INTRODUCTION|couper{600})</a></div>]
+            </div>
+            </div>
+            </BOUCLE_hitparade>
+            <B_articles>
+					#ANCRE_PAGINATION
+                    <div id="top11">
+						<BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse} {pagination 10}>
+            <div id="article">
+				<div id="img"><a href="#URL_ARTICLE">[(#LOGO_ARTICLE||image_recadre{90,90,center center})]</a></div>
+				<div id="info">
+                <h1 class="#EDIT{titre} titre"><a href="#URL_ARTICLE" class="on2">#TITRE</a></h1>
+				[<p class="#EDIT{soustitre} soustitre"><a href="#URL_ARTICLE">(#SOUSTITRE)</a></p>]
+                <p><small>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+                [<div class="#EDIT{chapo} chapo"><a href="#URL_ARTICLE">(#INTRODUCTION|couper{150})</a></div>]
+                </div>
+          </div>
+						</BOUCLE_articles></div>
+					[<div class="pagination2">(#PAGINATION{page_precedent_suivant})</div>]
+				</B_articles>
+
+		
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+                    <BOUCLE_video_news(RUBRIQUES){id_rubrique=1}>
+            #SET{top,"TOP 10"}
+            [(#GET{top}|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]  
+        	<div id="news">       
+            	 <BOUCLE_video_news_v_s(ARTICLES){id_rubrique=1}{par popularite}{inverse}{0,10}>
+                 <div>
+					<BOUCLE_afficher_document(DOCUMENTS){id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div>
+				[<a href="#URL_ARTICLE" type="#MIME_TYPE" [title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,47}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+			</div>
+			</BOUCLE_afficher_document>
+        <div>
+        [<a href="#URL_ARTICLE" title="#TITRE">(#TITRE|couper{30})]</a>
+        [<br/>(#SOUSTITRE|couper{40})]
+        </div>
+        </div>
+          </BOUCLE_video_news_v_s>          
+          </BOUCLE_video_news>   
+		</div><!-- fin navigation -->
+		<div id="bas"></div>
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>

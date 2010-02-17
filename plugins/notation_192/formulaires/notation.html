@@ -1,0 +1,21 @@
+#CACHE{0}
+
+<div class="formulaire_notation">
+
+[(#ENV*{canvote}|?{' ',''})
+	<form action="#SELF" method="post" id="notation#ID_ARTICLE" enctype="multipart/form-data" style="display:inline; padding:0; spacing:0; border:0">
+		<div style="display:inline">
+			[(#NOTATION_ETOILE_CLICK{[(#ENV*{note})],[(#ENV*{id_article})]})]
+			<input type="hidden" name="id_donnees" id="id_donnees#ID_ARTICLE" value="#ID_ARTICLE" />
+			<input type="hidden" name="content" id="content#ID_ARTICLE" value="" />
+			[<span class="note">(#ENV*{total}) <!--[(#ENV*{total}|>{1}|?{<:notation:votes:>,<:notation:vote:>})]--></span>]
+		</div>
+	</form>
+]
+
+[(#ENV*{canvote}|?{'',' '})
+	[(#NOTATION_ETOILE{#ENV*{note}})]
+	[<span class="note">(#ENV*{total}) [(#ENV*{total}|>{1}|?{<:notation:votes:>,<:notation:vote:>})]</span>]
+]
+
+</div>

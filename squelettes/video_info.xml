@@ -1,0 +1,7 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<?xml version="1.0" encoding="UTF-8"?>
+<clip>
+<titre>#TITRE</titre>
+</clip>
+</BOUCLE_article_principal>

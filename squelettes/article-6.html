@@ -1,0 +1,128 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+<script src="flowplayer/examples/js/flashembed.min.js"></script>
+</head>
+<BOUCLE_hitparade2(ARTICLES){id_article}>
+#SET{vdefault,#URL_SITE}
+</BOUCLE_hitparade2>
+<body class="page_article" onLoad="loadSWF('#GET{vdefault}&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0','video'); return false;">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div id="contenu">
+ <div id="Top"><div id="Top_logo">
+ <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+ [(#TITRE|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]
+  </BOUCLE_rubrique>
+ </div></div>
+			<div id="Top2">
+            [<div id="logo">
+   				<a href="#URL_ARTICLE">(#LOGO_ARTICLE||image_reduire{250,250})</a>
+              </div>]
+      <div id="artcle">
+				<h1 class="#EDIT{titre} titre">#TITRE</h1>
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+                <p><small>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+            </div>
+            </div>
+            <div id="top11">
+			#DEBUT_SURLIGNE
+			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
+			#FIN_SURLIGNE
+			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+			
+            			[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+            	<div id="porto">
+                            #SET{top2,"Portfolio"}
+            [(#GET{top2}|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				<div>[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]</div>
+				</BOUCLE_documents_portfolio>
+			</div>
+            </div>
+			</B_documents_portfolio>
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div class="spip_documents spip_documents_center" id="document_actif">
+				<div>#EMBED_DOCUMENT</div>
+				[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</div>
+			</BOUCLE_afficher_document>
+
+			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints">
+				            	<div>
+                            #SET{top2,"Documents joints"}
+            [(#GET{top2}|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]
+                </div>
+				<ul>
+					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+					<li>
+						<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+					</li>
+					</BOUCLE_documents_joints>
+				</ul>
+			</div>
+			</B_documents_joints>
+            
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF]
+			[(#PETITION|?{' '})
+				<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
+			]
+
+			[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+			[(#REM) Forum de l'article ]
+			<a href="#forum" name="forum" id="forum"></a>
+			[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)">Laisser un commentaire</a></h2>]
+			<INCLURE{fond=inc-forum}{id_article}>
+		</div>
+		</div><!-- fin contenu -->
+
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+        
+        [(#REM) Articles dans la meme rubrique ]
+			<B_articles_rubrique>
+			<div class="breves">
+				<h2 class="menu-titre"><a href="#URL_RUBRIQUE"><:meme_rubrique:></a></h2>
+				<ul>
+					<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse} {0,10}>
+					<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+					</BOUCLE_articles_rubrique>
+				</ul>
+			</div>
+			</B_articles_rubrique>
+            
+			<INCLURE{fond=inc-nav-top}{id_article}> 
+		</div><!-- fin navigation -->
+		<div id="bas"></div>
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>

@@ -1,0 +1,20 @@
+            #SET{top,"Vous-avez voté"}
+            [(#GET{top}|image_typo{police=FerroRosso.ttf,couleur=FFCC00,taille=14})]  
+        	<div id="news">       
+            	 <BOUCLE_not(NOTATIONS_ARTICLES){par note_ponderee}{inverse}{0,#ENV{max,10}}>
+                 <BOUCLE_art(ARTICLES){id_article}>
+                 <div>
+					<BOUCLE_afficher_document(DOCUMENTS){id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div>
+				[<a href="#URL_ARTICLE" [title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,47}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+			</div>
+			</BOUCLE_afficher_document>
+        <div>
+        [<a href="#URL_ARTICLE" title="#TITRE">(#TITRE|couper{30})]</a>
+        [<br/>(#SOUSTITRE|couper{40})]
+        [<br/>(#NOTATION_ETOILE{#NOTE_PONDEREE})]
+        </div>
+        </BOUCLE_art>
+        </div>
+          </BOUCLE_not>        
+</div>

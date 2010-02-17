@@ -1,0 +1,149 @@
+#CACHE{3600}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+<BOUCLE_hitparade2(ARTICLES){id_rubrique=1}{par popularite}{inverse}{0,1}>
+#SET{vdefault,#URL_SITE}
+</BOUCLE_hitparade2>
+<body class="page_sommaire" >
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : derniers articles publies ]
+		<div id="contenu">
+<BOUCLE_hitparade(ARTICLES){id_rubrique=1}{par popularite}{inverse}{0,1}>
+			<div id="Top1">
+            <div id="player">
+<!--            <object id="video" width="425" height="350"><param name="movie" value="#URL_SITE"></param><param name="wmode" value="transparent"></param><embed src="#URL_SITE&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0" wmode="transparent" width="425" height="350"></embed></object>-->
+<div id="video">
+You need Flash player 8+ and JavaScript enabled to view this video.
+  </div>
+<BOUCLE_live(RUBRIQUES){id_rubrique=14}>
+<B_live_art>
+<BOUCLE_live_art(ARTICLES){id_rubrique}{par date}{inverse}{0,1}>
+	<script type="text/javascript">
+		var s1 = new SWFObject("[(#CHEMIN{player.swf})]","ply","425","344","9","#FFFFFF");
+		s1.addParam('allowfullscreen','true');
+  		s1.addParam('allowscriptaccess','always');
+  		s1.addParam('wmode','opaque');
+  		s1.addParam('flashvars','file=#URL_SITE&image=[(#LOGO_ARTICLE||extraire_attribut{'src'})]&streamer=rtmp://red5.dofbi.com/Streaming');
+  		s1.write('video');
+	</script>
+              </div>
+      <div id="info">
+            	<a href="#URL_ARTICLE" class="on2"><h1>#TITRE</h1></a>
+    			<a href="#URL_ARTICLE"><h2>#SOUSTITRE</h2></a>
+                [<div class="graph"> <strong class="bar" style="width: #POPULARITE%;">(#POPULARITE)%</strong></div>]
+               <div id="message">           
+          [(#REM) Nombre total de messages ]
+          <BOUCLE_decompte_live_art(FORUMS){id_article}{tout}>
+          </BOUCLE_decompte_live_art>
+          [<a href="#URL_ARTICLE"><h3>(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,'Aucun commentaire'})
+            [(#TOTAL_BOUCLE|=={1}|?{
+            commentaire pour ce clip &raquo;
+            ,
+            commentaire pour ce clip &raquo;
+            })]
+            </h3></a>]
+            </B_decompte_live_art>
+            <div>
+              <a href="#URL_ARTICLE"><img src="IMG/boy/vote2.jpg" width="72" height="32" alt="vote"></a>
+              <br/>
+              [(#INTRODUCTION{100})]
+              </div>          
+          </div> 
+            </div>
+            </div>
+</BOUCLE_live_art>
+</B_live_art>       
+</BOUCLE_live>
+</B_live>
+	<script type="text/javascript">
+		loadSWF('#GET{vdefault}&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0','video');
+	</script>
+
+              </div>
+      <div id="info">
+            	<a href="#URL_ARTICLE" class="on2"><h1>#TITRE</h1></a>
+    			<a href="#URL_ARTICLE"><h2>#SOUSTITRE</h2></a>
+                [<div class="graph"> <strong class="bar" style="width: #POPULARITE%;">(#POPULARITE)%</strong></div>]
+               <div id="message">           
+          [(#REM) Nombre total de messages ]
+          <BOUCLE_decompte(FORUMS){id_article}{tout}>
+          </BOUCLE_decompte>
+          [<a href="#URL_ARTICLE"><h3>(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,'Aucun commentaire'})
+            [(#TOTAL_BOUCLE|=={1}|?{
+            commentaire pour ce clip &raquo;
+            ,
+            commentaire pour ce clip &raquo;
+            })]
+            </h3></a>]
+            </B_decompte>
+            <div>
+              <a href="#URL_ARTICLE"><img src="IMG/boy/vote2.jpg" width="72" height="32" alt="vote"></a>
+              </div>          
+          </div> 
+            </div>
+            </div>
+<//B_live>
+            <div id="top10">
+            #SET{top,"Le Top 50 des vidéos les plus vues"}
+            [(#GET{top}|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})] 
+            <BOUCLE_video_top_v(ARTICLES){id_rubrique=1}{par popularite}{inverse}{0,50}>
+            <div onClick="loadSWF('#URL_SITE&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0','video'); return false;">
+            <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#ID_ARTICLE" [title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]<br/>
+				</BOUCLE_documents_portfolio>
+
+          <A href="#" target="tv">#TITRE</A><br/>
+          #SOUSTITRE
+          </div>
+          </BOUCLE_video_top_v>
+            </div>
+            </BOUCLE_hitparade>
+
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+            <BOUCLE_video_news(RUBRIQUES){id_rubrique=1}>
+            [(#TITRE|supprimer_numero|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]
+            #SET{top2,"BEES TAAX "}
+            [(#GET{top2}|image_typo{police=FerroRosso.ttf,couleur=009700,taille=14})] 
+        	<div id="artiste">       
+            	 <BOUCLE_video_news_v_s(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+                 <div>
+					<BOUCLE_afficher_document(DOCUMENTS){id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div>
+				[<a href="#URL_ARTICLE" [title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,47}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+			</div>
+			</BOUCLE_afficher_document>
+        <div>
+        [<a href="#URL_ARTICLE" title="#TITRE">(#TITRE|couper{30})]</a>
+        [<br/>(#SOUSTITRE|couper{40})]
+        </div>
+        </div>
+          </BOUCLE_video_news_v_s>          
+          </BOUCLE_video_news>           
+		</div><!-- fin navigation -->
+        <div id="bas">        
+        <INCLURE{fond=inc-vote}>
+        <div id="mailing">#FORMULAIRE_ABONNEMENT</div>
+        </div>
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>

@@ -1,0 +1,321 @@
+@charset "utf-8";
+/* CSS Document */
+
+#entete #haut{
+	width: 100%;
+	height: 99px;
+}
+#entete #haut div {
+	display:inline;
+}
+#entete #haut #logo{
+	padding-top:16px;
+	padding-left:16px;
+	float:left;
+}
+#entete #haut #pub{
+	float:right;
+	padding-top:16px;
+	padding-right:16px;
+}
+#entete #haut #pub img{
+	border: 1px solid #FFFFFF;
+}
+#entete #menu{
+	background-image:url(../IMG/boy/fond_menus.jpg);
+	text-align: center;
+	width: 100%;
+	height: 33px;
+	padding-top:30px;
+}
+#entete #menu div {
+	display:inline;
+	border-right-width: 1px;
+	border-right-style: double;
+	border-right-color: #7BC00D;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+#entete #menu div:first-child{
+	display:inline;
+	border-right-width: 1px;
+	border-right-style: double;
+	border-right-color: #7BC00D;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-left-width: 1px;
+	border-left-style: double;
+	border-left-color: #7BC00D;
+}
+#conteneur #bas {
+	clear:both;
+	padding-top:10px;
+}
+#menu a{
+	font-size:16px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+#menu a:hover{
+	font-size:16px;
+	font-weight:bold;
+	color:#FCF908;
+}
+#menu_bas{
+	font-size:11px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+#menu_bas:hover{
+	font-size:11px;
+	font-weight:bold;
+	color:#FCF908;
+}
+.page_rubrique #page #conteneur #contenu #Top, .page_article #page #conteneur #contenu #Top {
+	padding-left:10px;
+	min-height:30px;}
+.page_rubrique #page #conteneur #contenu .syndic{
+	margin-left:10px;
+	margin-right:10px;}
+.page_rubrique #page #conteneur #contenu #Top div, .page_article #page #conteneur #contenu #Top div {
+	display:inline;}
+.page_rubrique #page #conteneur #contenu #Top #Top_logo, .page_article #page #conteneur #contenu #Top #Top_logo {
+	float:left;}
+.page_rubrique #page #conteneur #contenu #Top #Top_menu, .page_article #page #conteneur #contenu #Top #Top_menu {
+	padding-top:5px;
+	padding-right:260px;
+	float:right;}
+.page_rubrique #page #conteneur #contenu #Top1, .page_article #page #conteneur #contenu #Top1  { 
+	min-height:360px;
+	padding-top:0px;
+	padding-left:10px; }
+.page_rubrique #page #conteneur #contenu #Top2{ 
+	min-height:300px;
+	padding-top:0px;
+}
+.page_article #page #conteneur #contenu #Top2 { 
+	padding-top:0px;
+}
+.page_sommaire #page #conteneur #contenu #Top1 { 
+	min-height:360px;
+	padding-top:10px;
+	padding-left:10px; }
+.page_sommaire #page #conteneur #contenu #Top1 #info, .page_rubrique #page #conteneur #contenu #Top1 #info, .page_article #page #conteneur #contenu #Top1 #info { padding-left: 10px; }
+.page_sommaire #page #conteneur #contenu #Top1 div, .page_rubrique #page #conteneur #contenu #Top1 div, .page_article #page #conteneur #contenu #Top1 div{
+	display:inline;
+	float:left;}
+.page_sommaire #page #conteneur #contenu #top10,  .page_rubrique #page #conteneur #contenu #top10{ padding-left: 10px; }
+.page_sommaire #page #conteneur #contenu #top10 div, .page_rubrique #page #conteneur #contenu #top10 div {
+	float: left;
+	width: 99px;
+	padding:10px;
+	height:140px;
+}
+.page_sommaire #page #conteneur #contenu #top10 div.selected, .page_rubrique #page #conteneur #contenu #top10 div.selected {
+	border: 1px solid #00CC00;
+	background-color: #1A1A1A;
+	width: 99px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:5px;
+	padding-top:5px;
+	min-height:123px;
+}
+.page_rubrique #page #conteneur #contenu #Top2 #artcle h1, .page_article #page #conteneur #contenu #Top2 #artcle h1 {
+	font-size: 24px;
+	font-weight: bold;
+}
+.page_sommaire #page #conteneur #contenu #Top1 #player, .page_rubrique #page #conteneur #contenu #Top1 #player, .page_article #page #conteneur #contenu #Top1 #player { width: 425px; }
+.page_rubrique #page #conteneur #contenu #Top2 div, .page_article #page #conteneur #contenu #Top2 div{ display:inline; float:left;}
+.page_rubrique #page #conteneur #contenu #Top2 #logo, .page_article #page #conteneur #contenu #Top2 #logo { padding-left:10px;width: 260px; }
+.page_rubrique #page #conteneur #contenu #Top2 #logo img, .page_article #page #conteneur #contenu #Top2 #logo img{ border: 1px solid #999999; }
+.page_rubrique #page #conteneur #contenu #Top2 #artcle, .page_article #page #conteneur #contenu #Top2 #artcle { width:400px; padding-left:10px; padding-right:10px; }
+.page_rubrique #page #conteneur #contenu #Top2 a, .page_article #page #conteneur #contenu #Top2 a{ color:#FFFFFF; }
+
+.page_sommaire #page #conteneur #contenu #Top1 #info h1, .page_rubrique #page #conteneur #contenu #Top1 #info h1, .page_article #page #conteneur #contenu #Top1 #info h1{
+	font-size: 24px;
+	font-weight: bold;
+}
+.page_sommaire #page #conteneur #contenu #Top1 #info h2, .page_rubrique #page #conteneur #contenu #Top1 #info h2, .page_article #page #conteneur #contenu #Top1 #info h2 {
+	font-size: 16px;
+	font-weight: bold;
+	color:#CCFF00;
+}
+
+.page_sommaire #page #conteneur #contenu #top10 div img, .page_rubrique #page #conteneur #contenu #top10 div img{ 
+	border: 1px solid #999999; 
+}
+.page_sommaire #page #conteneur #contenu #Top1 #info #message, .page_rubrique #page #conteneur #contenu #Top1 #info #message, .page_article #page #conteneur #contenu #Top1 #info #message {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #FFFFFF;
+	min-height:100px;
+	margin-top:10px;
+	clear:both;
+	width:240px;
+}
+.page_sommaire #page #conteneur #contenu #top11, .page_rubrique #page #conteneur #contenu #top11, .page_article #page #conteneur #contenu #top11, .page_forum #page #conteneur #contenu #top11, .page_auteur #page #conteneur #contenu #top11 { padding-left: 10px; padding-right:10px; }
+.page_sommaire #page #conteneur #contenu #top11 #article, .page_rubrique #page #conteneur #contenu #top11 #article {
+	clear:both;
+	margin-bottom:10px;
+	float:left;
+	}
+.page_sommaire #page #conteneur #contenu #top11 #img, .page_rubrique #page #conteneur #contenu #top11 #img{
+	margin-right:10px;
+	}
+.page_sommaire #page #conteneur #contenu #top11 #article div, .page_rubrique #page #conteneur #contenu #top11 #article div {
+	display:inline;
+	float:left;
+}
+.page_sommaire #page #conteneur #contenu #top11 #info div, .page_rubrique #page #conteneur #contenu #top11 #info div {
+	width:550px;
+}
+.page_sommaire #page #conteneur #contenu #top11 div img, .page_rubrique #page #conteneur #contenu #top11 div img{ 
+	border: 1px solid #999999; 
+}
+.page_sommaire #page #conteneur #contenu #top11 #info h1, .page_rubrique #page #conteneur #contenu #top11 #info h1{
+	font-size: 16px;
+	font-weight: bold;
+}
+.page_sommaire #page #conteneur #contenu #top11 #info p, .page_rubrique #page #conteneur #contenu #top11 #info p{
+	margin:2px;
+}
+.page_sommaire #page #conteneur #contenu #top11 #info .soustitre, .page_rubrique #page #conteneur #contenu #top11 #info .soustitre{
+	color:#009900;
+}
+/*  ------------------------------------------
+/*  Boyjump popular
+/*  ------------------------------------------ */
+.graph {
+	position: relative; /* IE is dumb */
+	width: 200px;
+	border: 1px solid #00CE01;
+	padding: 0px;
+	min-height:20px;
+}
+.page_sommaire #page #conteneur #navigation #news, .page_rubrique #page #conteneur #navigation #news, .page_article #page #conteneur #navigation #news {
+	/*height: 391px;
+	overflow-y: scroll;*/
+}
+.page_sommaire #page #conteneur #navigation #news div, .page_rubrique #page #conteneur #navigation #news div, .page_article #page #conteneur #navigation #news div, .page_forum #page #conteneur #navigation #news div{
+	height:55px;
+	background-image: url(../IMG/boy/band.jpg);
+	background-repeat: repeat-x;
+	width:290px;
+	border: 1px solid #000;
+}
+.page_sommaire #page #conteneur #navigation #news div div, .page_rubrique #page #conteneur #navigation #news div div, .page_article #page #conteneur #navigation #news div div, .page_forum #page #conteneur #navigation #news div div{
+	background-image: none;
+	float:left;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding-left: 5px;
+	padding-top:0px;
+	height:55px;
+	width:auto;
+}
+.page_sommaire #page #conteneur #navigation #news div a, .page_rubrique #page #conteneur #navigation #news div a, .page_article #page #conteneur #navigation #news div a, .page_article #page #conteneur #navigation #artiste div a, .page_forum #page #conteneur #navigation #news div a{
+	font-weight: bold;
+	color: #006600;	
+}
+.page_sommaire #page #conteneur #navigation #news div img, .page_rubrique #page #conteneur #navigation #news div img{ /*border: 1px solid #009900;*/ }
+.page_sommaire #page #conteneur #contenu #Top1 #info #message h3, .page_rubrique #page #conteneur #contenu #Top1 #info #message h3, .page_article #page #conteneur #contenu #Top1 #info #message h3   {
+	font-size: 14px;
+	font-weight: bold;
+	color: #CCFF00;
+}
+
+.graph .bar {
+	display: block;
+	position: relative;
+	text-align: center;
+	color: #FF0000;
+	height: 2em;
+	line-height: 2em;
+	background-color: #ffcc00;
+    }
+.graph .bar span { position: absolute; left: 1em; }
+.pagination2{
+	clear: both;
+	font-size: 0.90em;
+	padding-right:10px;
+	text-align: center;
+	padding-left: 10px;
+	width:600px;
+}
+.on2{
+	color:#FFFFFF;
+	font-weight: bold;
+}
+.on22{
+	color:#FF0000;
+	font-weight: bold;
+	background-image: url(../IMG/boy/etoile.png);
+	background-repeat: no-repeat;
+	padding-left: 15px;
+	background-position: left 2px;
+}
+.page_article #page #conteneur #navigation #artiste, .page_sommaire #page #conteneur #navigation #artiste {
+	height:auto;
+	margin-bottom:0px;
+}
+.page_article #page #conteneur #navigation #artiste div, .page_sommaire #page #conteneur #navigation #artiste div{
+	height:55px;
+	background-image: url(../IMG/boy/bande_06.jpg);
+	background-repeat: repeat-x;
+	border: 1px solid #000000;
+	width:290px;
+}
+.page_article #page #conteneur #navigation #artiste div div, .page_sommaire #page #conteneur #navigation #artiste div div{
+	background-image: none;
+	float:left;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding-left: 5px;
+	padding-top:0px;
+	height:55px;
+	width:auto;
+}
+.page_article #page #conteneur #navigation #artiste div div a, .page_sommaire #page #conteneur #navigation #artiste div div a{
+	font-size: 14px;
+	font-weight: bold;
+	color: #006600;
+}
+.page_sommaire #page #conteneur #navigation #mailing{
+	background-image: url(../IMG/boy/mainling.png);
+	background-repeat: no-repeat;
+	padding: 10px;
+	height: 164px;
+	width: 266px;
+	margin-top: 27px;
+	margin-right: 7px;
+	margin-bottom: 7px;
+	margin-left: 7px;
+}
+.page_sommaire #page #conteneur #navigation #mailing legend{
+	font-weight: bold;
+	color: #59AA02;	
+}
+.page_sommaire #page #conteneur #navigation #mailing label{
+	font-weight: bold;
+	color: #FFFFFF;	
+}
+.page_article #page #conteneur #contenu #top11 #documents_portfolio #porto div{
+	float:left;
+	display:inline;
+	margin:5px;
+	background-color: #FFFFFF;
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+}
+.page_article #page #conteneur #contenu #top11 #documents_portfolio #porto div img{
+	border: 1px solid #009900;
+}

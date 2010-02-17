@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Through the Looking-Glass</title>
+<script type="text/javascript" src="jquery-1.2.6.min.js"></script>  
+<script type="text/javascript" src="jquery.flash.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+$('#news-feed').each(function() {
+$(this).empty();
+var pubdessin = function() {
+$.get('http://localhost/boy/spip.php?page=pub_info', function(data) {
+$(data).find('item').each(function() {
+var title = $('title', this).text();
+var linkText = $('link', this).text();
+var type = $('type', this).text();
+var lien = $('enclosure_url', this).text();
+if ( type=='JPG') {
+var $type = '<a href="'+linkText+'" title="'+title+'" target="_blank"><img src="'+lien+'" border="0"/></a>';
+}
+if ( type=='Flash') {
+var $type = '<div id="example">'+lien+'</div>';
+}
+$('<div></div>')
+.addClass('headline')
+.append($type)
+.appendTo('#news-feed');
+});
+});
+};
+// Set up the rotator.
+}); // End $.get()
+}); // End .each() for #news-feed
+$('#news-feed').hover(function() {
+clearTimeout(headlineTimeout);
+}, function() {
+headlineTimeout = setTimeout(headlineRotate, 250);
+});
+//});
+</script> 
+<style type="text/css">
+<!--
+#news-feed {
+	position: relative;
+	height: 92px;
+	width: 728px;
+	overflow: hidden;
+	background-color: #9FC;
+}
+.headline {
+position: absolute;
+overflow: hidden;
+}
+-->
+</style>
+</head>
+<body>
+<div id="sidebar">
+	<!-- Code continues... -->
+	<div id="news-feed">
+		<a href=news/index.html>News Releases</a>
+	</div>
+</div>
+</body>
+</html>

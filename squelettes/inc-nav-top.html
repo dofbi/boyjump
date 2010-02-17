@@ -1,0 +1,24 @@
+<BOUCLE_video_artiste(ARTICLES){id_article}>
+<B_video_artiste_clip>
+<div id="artiste">
+#SET{art,"CLIP :"}
+[(#GET{art}|image_typo{police=FerroRosso.ttf,couleur=FFFFFF,taille=14})]
+[(#SOUSTITRE|image_typo{police=FerroRosso.ttf,couleur=009700,taille=14})] 
+<BOUCLE_video_artiste_clip(ARTICLES){id_rubrique=1}{soustitre=#SOUSTITRE}{par popularite}{inverse}{0,10}>
+ <div>
+					<BOUCLE_afficher_document2(DOCUMENTS){id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div>
+				[<a href="#URL_ARTICLE" [title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,47}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+			</div>
+			</BOUCLE_afficher_document2>
+        <div>
+        [<a href="#URL_ARTICLE" title="#TITRE">(#TITRE|couper{30})]</a>
+        [<br/>(#SOUSTITRE|couper{40})]
+        </div>
+        </div>
+</BOUCLE_video_artiste_clip>
+</div>
+</B_video_artiste_clip>
+</BOUCLE_video_artiste>
+<//B_video_artiste>
+<INCLURE{fond=inc-vote}> 
