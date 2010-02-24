@@ -66,6 +66,37 @@ You need Flash player 8+ and JavaScript enabled to view this video.
 </B_live_art>       
 </BOUCLE_live>
 </B_live>
+<BOUCLE_videoforcer(ARTICLES){id_rubrique=1}{titre_mot=Une}{0,1}>
+#SET{vdefault,#URL_SITE}
+<script type="text/javascript">
+		loadSWF('#GET{vdefault}&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0','video');
+	</script>
+
+              </div>
+      <div id="info">
+            	<a href="#URL_ARTICLE" class="on2"><h1>#TITRE</h1></a>
+    			<a href="#URL_ARTICLE"><h2>#SOUSTITRE</h2></a>
+                [<div class="graph"> <strong class="bar" style="width: #POPULARITE%;">(#POPULARITE)%</strong></div>]
+               <div id="message">           
+          [(#REM) Nombre total de messages ]
+          <BOUCLE_decompte(FORUMS){id_article}{tout}>
+          </BOUCLE_decompte>
+          [<a href="#URL_ARTICLE"><h3>(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,'Aucun commentaire'})
+            [(#TOTAL_BOUCLE|=={1}|?{
+            commentaire pour ce clip &raquo;
+            ,
+            commentaire pour ce clip &raquo;
+            })]
+            </h3></a>]
+            </B_decompte>
+            <div>
+              <a href="#URL_ARTICLE"><img src="IMG/boy/vote2.jpg" width="72" height="32" alt="vote"></a>
+              </div>          
+          </div> 
+            </div>
+            </div>
+</BOUCLE_videoforcer>
+</B_videoforcer>
 	<script type="text/javascript">
 		loadSWF('#GET{vdefault}&enablejsapi=1&playerapiid=ytplayer&fs=1&showsearch=0','video');
 	</script>
@@ -93,6 +124,7 @@ You need Flash player 8+ and JavaScript enabled to view this video.
           </div> 
             </div>
             </div>
+<//B_videoforcer>
 <//B_live>
             <div id="top10">
             #SET{top,"Le Top 50 des vidéos les plus vues"}
